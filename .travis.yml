@@ -1,6 +1,6 @@
 language: python
 
-cache: pip
+#cache: pip
 
 python:
 - "2.7"
@@ -12,9 +12,9 @@ python:
 #- sudo apt-get install gfortran-4.9 -y
 #- sudo ln -s /usr/bin/gfortran-4.9 /usr/bin/gfortran
 
-install:
-- pip install .[full]
-- pip install pylint nose
+#install:
+#- pip install .[full]
+#- pip install pylint nose
 
 #before_script:
 #- export CHANGED=$(git diff --diff-filter=d --name-only $TRAVIS_COMMIT_RANGE | grep '^\(descqa.*\|tests\)/.\+\.py$')
