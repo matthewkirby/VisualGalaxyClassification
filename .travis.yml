@@ -22,7 +22,7 @@ install:
 #- export CHANGED=$(git diff --diff-filter=d --name-only $TRAVIS_COMMIT_RANGE | grep '^\(descqa.*\|tests\)/.\+\.py$')
 
 script:
-- py.test 
+#- py.test 
 - pylint classify_lib classify.py
 #- python -c "import descqaweb"
 #- python -c "import descqarun"
