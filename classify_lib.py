@@ -311,18 +311,18 @@ def calc_training_score(classifications):
     trueclassifications = fetch_training_truth()
     full, rough = [], []
 
-    for cl in classifications:
+    for usermorph in classifications:
         trueclass = ''
 
         for truth in trueclassifications:
-            if cl[0] == truth[0]:
+            if usermorph[0] == truth[0]:
                 trueclass = truth[1]
                 break
 
-        if trueclass == cl[1]:
+        if trueclass == usermorph[1]:
             full.append(1.)
             rough.append(1.)
-        elif check_broad_training_categories(trueclass, cl[1]):
+        elif check_broad_training_categories(trueclass, usermorph[1]):
             full.append(0.)
             rough.append(1.)
         else:
@@ -332,7 +332,7 @@ def calc_training_score(classifications):
     print "=========================================="
     print "================ Summary ================="
     print "Classified {} galaxies out of the training set of {}".format(
-        len(classifications), len(truth))
+        len(classifications), len(trueclassifications))
     print "Score (Bad/E/S0/Sp/Irr bins): {:.1f}".format(100.*sum(rough)/len(rough))
     print "Score (Full bin resolution): {:.1f}".format(100.*sum(full)/len(full))
 
