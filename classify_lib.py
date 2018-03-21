@@ -189,21 +189,21 @@ def display_gal(fname):
     print "==========================================================="
     print "Displaying cutout {}".format(fname)
 
-    d = ds9.DS9()
-    d.set("tile yes")
-    d.set("tile mode column")
+    ds9window = ds9.DS9()
+    ds9window.set("tile yes")
+    ds9window.set("tile mode column")
 
-    d.set("frame 1")
-    d.set("file " + fname)
-    d.set("zoom to fit")
-    d.set("scale log")
+    ds9window.set("frame 1")
+    ds9window.set("file " + fname)
+    ds9window.set("zoom to fit")
+    ds9window.set("scale log")
     # d.set("scale limits -0.1 2")
 
-    d.set("frame 2")
-    d.set("file " + fname)
-    d.set("zoom to fit")
-    d.set("scale log")
-    d.set("scale limits -0.1 25")
+    ds9window.set("frame 2")
+    ds9window.set("file " + fname)
+    ds9window.set("zoom to fit")
+    ds9window.set("scale log")
+    ds9window.set("scale limits -0.1 25")
 
     return
 
@@ -308,15 +308,15 @@ def calc_training_score(classifications):
         the second element is the classification.
     """
 
-    truth = fetch_training_truth()
+    trueclassifications = fetch_training_truth()
     full, rough = [], []
 
     for cl in classifications:
         trueclass = ''
 
-        for tr in truth:
-            if cl[0] == tr[0]:
-                trueclass = tr[1]
+        for truth in trueclassifications:
+            if cl[0] == truth[0]:
+                trueclass = truth[1]
                 break
 
         if trueclass == cl[1]:

@@ -15,6 +15,8 @@ python:
 install:
 #- pip install .[full]
 - pip install pylint
+- pip install pyds9
+- pip install easygui
 
 #before_script:
 #- export CHANGED=$(git diff --diff-filter=d --name-only $TRAVIS_COMMIT_RANGE | grep '^\(descqa.*\|tests\)/.\+\.py$')
