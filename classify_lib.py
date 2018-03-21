@@ -39,7 +39,6 @@ def run_classify(testing=''):
     """
 
     cutouts = load_cutout_list('{}cutoutlist.dat'.format(testing))
-    # Check if user is mid-classification
     cutouts = gals_done(cutouts, testing)
     print "Beginning classification of {0} galaxies.".format(len(cutouts))
 
@@ -142,21 +141,16 @@ def classify_gal():
 
 def print_morph_options():
     """Print the options for the morphologies to the terminal.
+
+    Morphology options are read in from a file in the tables subdir
     """
 
-    print 'For spirals+, a slash is allowed if you are on the edge (1/3 for Sa/Sb)'
-    print '-7 : Star'
-    print '-6 : Non-stellar but compact'
-    print '-5 : Elliptical'
-    print '-2 : S0'
-    print ' 1 : Sa'
-    print ' 3 : Sb'
-    print ' 5 : Sc'
-    print ' 7 : Sd'
-    print ' 9 : Sm'
-    print '11 : Irr'
-    print '66 : Unclassifiable'
-    print ' q : Quit (progress is saved)\n\n'
+    with open('tables/classification_options.dat', 'r') as fin:
+        opts = fin.readlines()
+
+    for opt in opts:
+        print opt.strip('\n')
+
     return
 
 
@@ -179,16 +173,16 @@ def set_flags():
 
 def print_flag_options():
     """Print the options for the flags to the terminal.
+
+    Flag options are read in from a file in the tables subdir
     """
 
-    print '1. SODISK'
-    print '2. BAR'
-    print '3. EDGEON'
-    print '4. SMALL'
-    print '5. LSB'
-    print '6. DEFECT'
-    print '7. DUST'
-    print '8. DISTURBED\n\n'
+    with open('tables/flag_options.dat', 'r') as fin:
+        opts = fin.readlines()
+
+    for opt in opts:
+        print opt.strip('\n')
+
     return
 
 
