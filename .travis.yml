@@ -20,7 +20,8 @@ python:
 #- export CHANGED=$(git diff --diff-filter=d --name-only $TRAVIS_COMMIT_RANGE | grep '^\(descqa.*\|tests\)/.\+\.py$')
 
 script:
-- py.test
+- py.test 
+- pylint
 #- python -c "import descqaweb"
 #- python -c "import descqarun"
 #- '[ -z "$CHANGED" ] || pylint --disable=C0103,C0301,W0511 --extension-pkg-whitelist=numpy $CHANGED; EXITCODE=$?; if [ $(($EXITCODE&7)) -gt 0 ]; then exit $EXITCODE; fi;'
