@@ -20,40 +20,40 @@ def test_gals_done():
 class TestClassifyGal(unittest.TestCase):
     def test1(self):
         original_raw_input = raw_input
-        cll.set_builtin('raw_input', lambda _: '1/3')
+        __builtins__['raw_input'] = lambda _: '1/3'
         self.assertEqual(cll.classify_gal(), '1/3')
-        cll.set_builtin('raw_input', original_raw_input)
+        __builtins__['raw_input'] = original_raw_input
 
     def test2(self):
         original_raw_input = raw_input
-        cll.set_builtin('raw_input', lambda _: '-2')
+        __builtins__['raw_input'] = lambda _: '-2'
         self.assertEqual(cll.classify_gal(), '-2')
-        cll.set_builtin('raw_input', original_raw_input)
+        __builtins__['raw_input'] = original_raw_input
 
 
 class TestAddFlags(unittest.TestCase):
     def test1(self):
         original_raw_input = raw_input
-        cll.set_builtin('raw_input', lambda _: '123')
+        __builtins__['raw_input'] = lambda _: '123'
         self.assertEqual(cll.set_flags(), '123')
-        cll.set_builtin('raw_input', original_raw_input)
+        __builtins__['raw_input'] = original_raw_input
 
     def test2(self):
         original_raw_input = raw_input
-        cll.set_builtin('raw_input', lambda _: '6')
+        __builtins__['raw_input'] = lambda _: '6'
         self.assertEqual(cll.set_flags(), '6')
-        cll.set_builtin('raw_input', original_raw_input)
+        __builtins__['raw_input'] = original_raw_input
 
     def test3(self):
         original_raw_input = raw_input
-        cll.set_builtin('raw_input', lambda _: '')
+        __builtins__['raw_input'] = lambda _: ''
         self.assertEqual(cll.set_flags(), '')
-        cll.set_builtin('raw_input', original_raw_input)
+        __builtins__['raw_input'] = original_raw_input
 
 
 def test_pipeline():
     original_raw_input = raw_input
-    cll.set_builtin('raw_input', lambda _: '3')
+    __builtins__['raw_input'] = lambda _: '3'
     cll.run_classify('testing/')
 
     # Check the output file
@@ -65,6 +65,8 @@ def test_pipeline():
     # Reset the results file
     with open('testing/results.dat', 'w') as fres:
         fres.write('testing/testcutout.fits 3 3\n')
+
+    __builtins__['raw_input'] = original_raw_input
 
 
 @pytest.mark.skip()

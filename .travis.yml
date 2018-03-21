@@ -21,7 +21,7 @@ install:
 
 script:
 - py.test 
-- pylint classify_lib
+- pylint classify_lib classify.py
 #- python -c "import descqaweb"
 #- python -c "import descqarun"
 #- '[ -z "$CHANGED" ] || pylint --disable=C0103,C0301,W0511 --extension-pkg-whitelist=numpy $CHANGED; EXITCODE=$?; if [ $(($EXITCODE&7)) -gt 0 ]; then exit $EXITCODE; fi;'
