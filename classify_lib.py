@@ -14,6 +14,7 @@ The order in which we do things
 import os
 import easygui as eg
 import pyds9 as ds9
+from random import shuffle
 
 
 def run_train():
@@ -56,6 +57,7 @@ def fetch_training_truth():
     truths = [t_.split() for t_ in truths]
     return truths
 
+
 def run_classify(testing=''):
     """Runs the classification pipeline.
 
@@ -71,6 +73,9 @@ def run_classify(testing=''):
 
     cutouts = load_cutout_list('{}cutoutlist.dat'.format(testing))
     cutouts = gals_done(cutouts, testing)
+    print cutouts[0]
+    shuffle(cutouts)
+    print cutouts[0]
     print "Beginning classification of {0} galaxies.".format(len(cutouts))
 
     morph_choices = fetch_morph_options()
@@ -78,7 +83,7 @@ def run_classify(testing=''):
 
     # Loop over the cutout list
     for cutout in cutouts:
-        display_gal(cutout)
+        display_gal('cutouts/'+cutout)
         morph = classify_gal(morph_choices)
         if morph == 'Quit':
             break
@@ -197,7 +202,7 @@ def display_gal(fname):
     ds9window.set("file " + fname)
     ds9window.set("zoom to fit")
     ds9window.set("scale log")
-    # d.set("scale limits -0.1 2")
+    #ds9window.set("scale limits -0.1 2")
 
     ds9window.set("frame 2")
     ds9window.set("file " + fname)
