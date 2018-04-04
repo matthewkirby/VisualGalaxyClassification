@@ -21,7 +21,10 @@ def run_train():
     """Run the training set of cutouts.
 
     This code loads the cutouts that were previously used as a training sample
-    and tests the user. Will report back a score based on broad E/S0/Sp/Irr etc.
+    and tests the user. Once the user has completed the classification, we
+    print to the screen a score based on how you did for the entire
+    classification (E, S0, Irr, and each type of spiral) and a score in
+    more narrow bins (just E/S0/Sp/Irr).
     """
 
     cutouts = load_cutout_list('training/traininglist.dat')
@@ -340,6 +343,7 @@ def calc_training_score(classifications):
         len(classifications), len(trueclassifications))
     print "Score (Bad/E/S0/Sp/Irr bins): {:.1f}".format(100.*sum(rough)/len(rough))
     print "Score (Full bin resolution): {:.1f}".format(100.*sum(full)/len(full))
+    return
 
 
 def check_broad_training_categories(truth, clmorph):
