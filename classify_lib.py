@@ -12,9 +12,9 @@ The order in which we do things
 """
 
 import os
+from random import shuffle
 import easygui as eg
 import pyds9 as ds9
-from random import shuffle
 
 
 def run_train():
